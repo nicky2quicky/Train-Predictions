@@ -82,7 +82,7 @@ firebase.initializeApp(config);
 
   var minutesAway = frequency - remainingTime;
   // Testing the minutes away variable
-  console.log(minutesAway + " Minutes Away");
+  console.log(minutesAway + " minutes away");
 
 
   // Attempting to convert the time of the first train into minutes 

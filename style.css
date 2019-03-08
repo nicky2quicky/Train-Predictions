@@ -1,7 +1,12 @@
 #train-table th,
 td {
   display: inline-block;
-  width: 16.575%;
+  width: 18%;
+  background-color: seashell;
+}
+
+.card-body{
+    background-color: rgb(240, 205, 159);
 }
 
 h3{
