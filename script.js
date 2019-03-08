@@ -66,25 +66,39 @@ firebase.initializeApp(config);
 
   // Creat a variable for current time, to help create the difference with frequency of the upcoming trains
   
-  var firstTimeNice = moment(firstTime, "hh:mm");
+  // FIXED CRITCAL ERROR WITH SUBTRACTING TIME!?
+
+  var firstTimeNice = moment(firstTime, "hh:mm").subtract(1, "years");
   console.log(firstTimeNice);
 
   var firstToNow = moment().diff(moment(firstTimeNice), "minutes");
-    console.log("This is the difference from the first train " + firstToNow);
+    console.log(firstToNow);
 
     // Use the above variable and leverage the % previously used to see which values are divisible by 75 from the first example, or any other number of minutes entered for frequency:
 
-    var remaining = firstToNow % frequency;
+    var remainingTime = firstToNow % frequency;
     // Testing the time since the last train departure
-  console.log(remaining + " Minutes");
+  console.log(remainingTime + " Minutes");
 
-  var minutesAway = frequency - remaining;
+  var minutesAway = frequency - remainingTime;
   // Testing the minutes away variable
   console.log(minutesAway + " Minutes Away");
 
-  var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
-	console.log(nextArrival);
 
+  // Attempting to convert the time of the first train into minutes 
+
+// Using the now variable, we can now start setting up the time difference between the trains and now
+
+// var timeDifference = moment().diff(moment(firstTime), "minutes");
+// console.log(timeDifference);
+
+    // var trainDifference = moment().diff(moment.unix(snapshot.val().time), "minutes");
+
+    // console.log(trainDifference);
+
+  
+
+// Need to add additional variables (Next Train Arrival HH:mm and How Long in minutes) to include and later append within the HTML
 
     // Failed miserably trying to do a for loop, changing strategy
 
@@ -122,6 +136,10 @@ firebase.initializeApp(config);
   //   // Calculate the total billed rate
   //   var empBilled = empMonths * frequency;
   //   console.log(empBilled);
+
+
+  var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
+  console.log(nextArrival + " Next Arrival Time");
   
     // Create the new row
     var newRow = $("<tr>").append(
