@@ -72,6 +72,18 @@ firebase.initializeApp(config);
   var firstToNow = moment().diff(moment(firstTimeNice), "minutes");
     console.log("This is the difference from the first train " + firstToNow);
 
+    // Use the above variable and leverage the % previously used to see which values are divisible by 75 from the first example, or any other number of minutes entered for frequency:
+
+    var remaining = firstToNow % frequency;
+    // Testing the time since the last train departure
+  console.log(remaining + " Minutes");
+
+  var minutesAway = frequency - remaining;
+  // Testing the minutes away variable
+  console.log(minutesAway + " Minutes Away");
+
+  var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
+	console.log(nextArrival);
 
 
     // Failed miserably trying to do a for loop, changing strategy
