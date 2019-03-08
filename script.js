@@ -56,24 +56,56 @@ firebase.initializeApp(config);
     var firstTime = childSnapshot.val().start;
     var frequency = childSnapshot.val().rate;
   
-    // Train Info
+    // Train Info - Check to make sure everything is correct from the Firebase
     console.log(trainName);
     console.log(destination);
     console.log(firstTime);
     console.log(frequency);
+
+
+
+  // Creat a variable for current time, to help create the difference with frequency of the upcoming trains
+  
+  var firstTimeNice = moment(firstTime, "hh:mm");
+  console.log(firstTimeNice);
+
+  var firstToNow = moment().diff(moment(firstTimeNice), "minutes");
+    console.log("This is the difference from the first train " + firstToNow);
+
+
+
+    // Failed miserably trying to do a for loop, changing strategy
+
+
+
+  //  var firstTimeNice = firstTime.split(':');
+  //   console.log(firstTimeNice);
+  //  var minutes = (+firstTimeNice[0]) * 60 +(+firstTimeNice[1]);
+
+  //   console.log(minutes);
+  
   
   // Clean up the the train schedule
-    // var firstTrainTime = moment.unix(firstTime).format("HH:mm");
+    // console.log(firstTrainTime);
+    // Making the max interval 1441 minutes (in the situation you have a train arrive every minut since there are only 1440 minutes in a day
+
+    // for (var i = 0; i < 1441; i++){
+    //   var nextTrain = firstTime + frequency[i];
+    // }
+
+    // console.log(nextTrain);
   
   //   // Calculate the months worked using hardcore math
   //   // To calculate the months worked
-    for (var i = 0; i < 1401; i++) {
-      var nextTrain = firstTime + i
+  
+      // var nextTrain = parseInt(firstTime) + parseInt(frequency)
+      // console.log(parseInt(nextTrain));
     
+      // for (i = parseInt)
 
-    var empMonths = moment().diff(moment(firstTime, "LT"), "minutes");
-    console.log(empMonths);
-    }
+    // var empMonths = moment().diff(moment(firstTime, "LT"), "minutes");
+    // console.log(empMonths);
+    
   
   //   // Calculate the total billed rate
   //   var empBilled = empMonths * frequency;
@@ -84,9 +116,9 @@ firebase.initializeApp(config);
       $("<td>").text(trainName),
       $("<td>").text(destination),
       $("<td>").text(frequency),
-      // $("<td>").text(empMonths),
-      // $("<td>").text(frequency),
-  //     $("<td>").text(empBilled)
+      $("<td>").text(nextArrival),
+      $("<td>").text(minutesAway),
+  
     );
   
     // Append the new row to the table
